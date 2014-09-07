@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Argument Collection">
+      <UniqueIdentifier>{5d8c1319-caf1-4beb-9488-21f261d48100}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Launcher">
+      <UniqueIdentifier>{6b731057-ae7f-4ab5-bd75-43d5af9cebbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script">
+      <UniqueIdentifier>{d3aca69e-67cc-4f5d-abc8-3898689c8b20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Settings Manager">
+      <UniqueIdentifier>{eda869dc-0d95-427a-a648-940519783c6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{1c85495c-6f42-41b4-8f21-af2e7266eb85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Variable System">
+      <UniqueIdentifier>{928ba569-3dcf-434a-adb7-0c6b7f949d8d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Icon.h" />
+    <ClInclude Include="Source\Argument Collection\ArgumentCase.h">
+      <Filter>Argument Collection</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Argument Collection\ArgumentCollection.h">
+      <Filter>Argument Collection</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Launcher\ArgumentParser.h">
+      <Filter>Launcher</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Launcher\GameType.h">
+      <Filter>Launcher</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Launcher\Launcher.h">
+      <Filter>Launcher</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Launcher\LauncherMode.h">
+      <Filter>Launcher</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Variable System\Variable.h">
+      <Filter>Variable System</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Variable System\VariableSystem.h">
+      <Filter>Variable System</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utilities\Utilities.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Settings Manager\SettingsManager.h">
+      <Filter>Settings Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Script\Script.h">
+      <Filter>Script</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Script\ScriptArguments.h">
+      <Filter>Script</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Launcher\MenuOptions.h">
+      <Filter>Launcher</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Main.cpp" />
+    <ClCompile Include="Source\Argument Collection\ArgumentCase.cpp">
+      <Filter>Argument Collection</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Argument Collection\ArgumentCollection.cpp">
+      <Filter>Argument Collection</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Launcher\ArgumentParser.cpp">
+      <Filter>Launcher</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Launcher\GameType.cpp">
+      <Filter>Launcher</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Launcher\Launcher.cpp">
+      <Filter>Launcher</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Launcher\LauncherMode.cpp">
+      <Filter>Launcher</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Variable System\Variable.cpp">
+      <Filter>Variable System</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Variable System\VariableSystem.cpp">
+      <Filter>Variable System</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utilities\Utilities.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Settings Manager\SettingsManager.cpp">
+      <Filter>Settings Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Script\Script.cpp">
+      <Filter>Script</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Script\ScriptArguments.cpp">
+      <Filter>Script</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Launcher\MenuOptions.cpp">
+      <Filter>Launcher</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Z Launcher.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Z.ico" />
+  </ItemGroup>
+</Project>

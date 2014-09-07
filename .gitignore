@@ -1,0 +1,17 @@
+Z/*
+DOSBox/*
+Debug/*
+Release/*
+Misc/*
+Old/*
+stderr.txt
+stdout.txt
+Z Launcher.txt
+Z Launcher.ini
+*.ncb
+*.sdf
+*.suo
+*.vcproj.*
+*.vcxproj.user
+*.opensdf
+*.EXE

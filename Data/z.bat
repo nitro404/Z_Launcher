@@ -1,0 +1,2 @@
+<GAMEPATH|CD :GAMEPATH:>
+:Z: /CD:D
