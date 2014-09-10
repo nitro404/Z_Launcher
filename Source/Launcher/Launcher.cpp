@@ -194,17 +194,17 @@ void Launcher::runMenu() {
 	QString input, data, formattedData;
 	QByteArray dateBytes;
 
-	QRegExp       gameRegExp("^(z|r(un)?|g(o)?|l(aunch)?|start)$");
-	QRegExp     clientRegExp("^(c(lient)?)$");
-	QRegExp     serverRegExp("^(s(server)?)$");
-	QRegExp soundSetupRegExp("^(a(udio)?|sound)$");
-	QRegExp videoSetupRegExp("^(v(ideo)?)$");
-	QRegExp         ipRegExp("^(ip|connect)([ ]+.*)?");
-	QRegExp   gameTypeRegExp("^(t(ype)?)([ ]+.*)?");
-	QRegExp       modeRegExp("^(m(ode)?)([ ]+.*)?");
-	QRegExp       helpRegExp("^(\\?|h(elp)?)$");
-	QRegExp       backRegExp("^(b(ack)?)$");
-	QRegExp       exitRegExp("^(x|exit|q(uit)?)$");
+	static const QRegExp       gameRegExp("^(z|r(un)?|g(o)?|l(aunch)?|start)$");
+	static const QRegExp     clientRegExp("^(c(lient)?)$");
+	static const QRegExp     serverRegExp("^(s(server)?)$");
+	static const QRegExp soundSetupRegExp("^(a(udio)?|sound)$");
+	static const QRegExp videoSetupRegExp("^(v(ideo)?)$");
+	static const QRegExp         ipRegExp("^(ip|connect)([ ]+.*)?");
+	static const QRegExp   gameTypeRegExp("^(t(ype)?)([ ]+.*)?");
+	static const QRegExp       modeRegExp("^(m(ode)?)([ ]+.*)?");
+	static const QRegExp       helpRegExp("^(\\?|h(elp)?)$");
+	static const QRegExp       backRegExp("^(b(ack)?)$");
+	static const QRegExp       exitRegExp("^(x|exit|q(uit)?)$");
 
 	while(true) {
 		Utilities::clear();
@@ -387,9 +387,9 @@ void Launcher::runGameTypePrompt(const QString & args) {
 	bool skipInput = !trimmedArgs.isEmpty();
 	GameTypes::GameType gameType = GameTypes::Invalid;
 
-	QRegExp integerRegExp("^[0-9]+$");
-	QRegExp  cancelRegExp("^(a(bort)?)|(b(ack)?)|(c(ancel)?)$");
-	QRegExp    helpRegExp("^(\\?|h(elp)?)$");
+	static const QRegExp integerRegExp("^[0-9]+$");
+	static const QRegExp  cancelRegExp("^(a(bort)?)|(b(ack)?)|(c(ancel)?)$");
+	static const QRegExp    helpRegExp("^(\\?|h(elp)?)$");
 
 	while(true) {
 		Utilities::clear();
@@ -490,9 +490,9 @@ void Launcher::runModePrompt(const QString & args) {
 	bool skipInput = !trimmedArgs.isEmpty();
 	LauncherModes::LauncherMode mode = LauncherModes::Invalid;
 
-	QRegExp integerRegExp("^[0-9]+$");
-	QRegExp  cancelRegExp("^(a(bort)?)|(b(ack)?)|(c(ancel)?)$");
-	QRegExp    helpRegExp("^(\\?|h(elp)?)$");
+	static const QRegExp integerRegExp("^[0-9]+$");
+	static const QRegExp  cancelRegExp("^(a(bort)?)|(b(ack)?)|(c(ancel)?)$");
+	static const QRegExp    helpRegExp("^(\\?|h(elp)?)$");
 
 	while(true) {
 		Utilities::clear();
@@ -590,8 +590,8 @@ void Launcher::runIPAddressPrompt(const QString & args) {
 	QString trimmedArgs = args.trimmed();
 	bool skipInput = !trimmedArgs.isEmpty();
 
-	QRegExp cancelRegExp("^(a(bort)?)|(b(ack)?)|(c(ancel)?)$");
-	QRegExp   helpRegExp("^(\\?|h(elp)?)$");
+	static const QRegExp cancelRegExp("^(a(bort)?)|(b(ack)?)|(c(ancel)?)$");
+	static const QRegExp   helpRegExp("^(\\?|h(elp)?)$");
 
 	while(true) {
 		Utilities::clear();
