@@ -273,25 +273,25 @@ void Launcher::runMenu() {
 			Utilities::clear();
 
 			printf("Command information:\n");
-			printf("       z -------- start Z in single player mode.\n");
-			printf("   [r]un -------- start Z in single player mode.\n");
-			printf("    [g]o -------- start Z in single player mode.\n");
-			printf("[l]aunch -------- start Z in single player mode.\n");
-			printf("   start -------- start Z in single player mode.\n");
-			printf("[c]lient -------- start Z in multiplayer client mode.\n");
-			printf("[s]erver -------- start Z in multiplayer server mode.\n");
-			printf(" [a]udio -------- run sound setup.\n");
-			printf("   sound -------- run sound setup.\n");
-			printf(" [v]ideo -------- run video setup.\n");
-			printf(" connect <args> - obtains the ip address of the host server.\n");
-			printf("      ip <args> - obtains the ip address of the host server.\n");
-			printf("  [t]ype <args> - change game type (single / multi player).\n");
-			printf("  [m]ode <args> - change mod manager launch mode (regular / dosbox).\n");
-			printf("  [b]ack -------- returns to the previous menu (if applicable).\n");
-			printf("  [h]elp -------- displays this help message.\n");
-			printf("       ? -------- displays this help message.\n");
-			printf("  [q]uit -------- closes the program.\n");
-			printf("  e[x]it -------- closes the program.\n");
+			printf("       z -------- Start Z in single player mode.\n");
+			printf("   [r]un -------- \"\"\n");
+			printf("    [g]o -------- \"\"\n");
+			printf("[l]aunch -------- \"\"\n");
+			printf("   start -------- \"\"\n");
+			printf("[c]lient -------- Start Z in multiplayer client mode.\n");
+			printf("[s]erver -------- Start Z in multiplayer server mode.\n");
+			printf(" [a]udio -------- Run sound setup.\n");
+			printf("   sound -------- \"\"\n");
+			printf(" [v]ideo -------- Run video setup.\n");
+			printf(" connect <args> - Obtains the IP address of the host server.\n");
+			printf("      ip <args> - \"\"\n");
+			printf("  [t]ype <args> - Change game type (Single / Multiplayer).\n");
+			printf("  [m]ode <args> - Change launcher mode (Regular / DOSBox).\n");
+			printf("  [b]ack -------- Returns to the previous menu (if applicable).\n");
+			printf("  [h]elp -------- Displays this help message.\n");
+			printf("       ? -------- \"\"\n");
+			printf("  [q]uit -------- Closes the launcher.\n");
+			printf("  e[x]it -------- \"\"\n");
 			printf("\n");
 
 			Utilities::pause();
@@ -709,7 +709,7 @@ bool Launcher::runGame(const ArgumentParser * args) {
 		QByteArray DOSBoxCommandBytes = DOSBoxCommand.toLocal8Bit();
 
 #if _DEBUG
-		printf("%s\n\n", DOSBoxCommandBytes.data());
+		printf("\n%s\n\n", DOSBoxCommandBytes.data());
 #endif // _DEBUG
 
 		system(DOSBoxCommandBytes.data());
@@ -751,7 +751,7 @@ bool Launcher::runGame(const ArgumentParser * args) {
 			QByteArray windowsCommandBytes = windowsCommand.toLocal8Bit();
 
 #if _DEBUG
-			printf("%s\n\n", windowsCommandBytes.data());
+			printf("\n%s\n\n", windowsCommandBytes.data());
 #endif // _DEBUG
 
 			system(windowsCommandBytes.data());
@@ -895,9 +895,9 @@ int Launcher::checkForMissingExecutables() {
 
 void Launcher::displayArgumentHelp() {
 	printf("Z Launcher arguments:\n");
-	printf(" -f \"Settings.ini\" - specifies an alternate settings file to use.\n");
-	printf(" -m DOSBox/Windows - specifies mod manager mode, default: DOSBox.\n");
-	printf(" -t Game/Setup Sound/Setup Video/Client/Server - specifies game type, default: Game.\n");
-	printf(" -ip 127.0.0.1 - specifies host ip address if running in client mode.\n");
-	printf(" -? - displays this help message.\n");
+	printf(" -f \"Settings.ini\" - Specifies an alternate settings file to use.\n");
+	printf(" -m DOSBox/Windows - Specifies launcher mode, default: DOSBox.\n");
+	printf(" -t Game/Setup Sound/Setup Video/Client/Server - Specifies game type, default: Game.\n");
+	printf(" -ip 127.0.0.1 - Specifies host IP address if running in client mode.\n");
+	printf(" -? - Displays this help message.\n");
 }

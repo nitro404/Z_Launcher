@@ -5,18 +5,18 @@ const char ScriptArguments::condOptionChar = '|';
 const char ScriptArguments::condCloseChar = '>';
 const char ScriptArguments::argChar = ':';
 
-ScriptArguments::ScriptArguments() {
-	m_case = ArgumentCases::UpperCase;
+ScriptArguments::ScriptArguments()
+	: ArgumentCollection(ArgumentCases::UpperCase) {
+	
 }
 
-ScriptArguments::ScriptArguments(const ScriptArguments & s) {
-	m_case = s.m_case;
-	m_arguments = s.m_arguments;
+ScriptArguments::ScriptArguments(const ScriptArguments & s)
+	: ArgumentCollection(s) {
+	
 }
 
 ScriptArguments & ScriptArguments::operator = (const ScriptArguments & s) {
-	m_case = s.m_case;
-	m_arguments = s.m_arguments;
+	ArgumentCollection::operator = (s);
 
 	return *this;
 }
@@ -175,20 +175,7 @@ QString ScriptArguments::applyArguments(const QString & command) const {
 }
 
 bool ScriptArguments::operator == (const ScriptArguments & s) const {
-	if(m_arguments.size() != s.m_arguments.size()) { return false; }
-	
-	QList<QString> keys = m_arguments.keys();
-
-	for(int i=0;i<keys.size();i++) {
-		if(!s.m_arguments.contains(keys[i])) {
-			return false;
-		}
-		
-		if(QString::compare(m_arguments.value(keys[i]), s.m_arguments.value(keys[i]), Qt::CaseSensitive) != 0) {
-			return false;
-		}
-	}
-	return true;
+	return ArgumentCollection::operator == (dynamic_cast<const ArgumentCollection &>(s));
 }
 
 bool ScriptArguments::operator != (const ScriptArguments & s) const {
