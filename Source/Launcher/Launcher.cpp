@@ -215,8 +215,8 @@ void Launcher::runMenu() {
 
 		printf("\n");
 
-		for(int i=static_cast<int>(MenuOptions::Invalid)+1;i<static_cast<int>(MenuOptions::NumberOfOptions);i++) {
-			printf("%d. %s\n", i, MenuOptions::toString(i));
+		for(int i=0;i<static_cast<int>(MenuOptions::NumberOfOptions);i++) {
+			printf("%d. %s\n", i + 1, MenuOptions::toString(i));
 		}
 		printf("> ");
 
@@ -307,12 +307,12 @@ void Launcher::runMenu() {
 			return;
 		}
 
-		selectedIndex = data.toInt(&valid, 10);
+		selectedIndex = data.toInt(&valid, 10) - 1;
 
 		if(valid) {
 			valid = false;
 
-			if(selectedIndex >= 1 && selectedIndex < static_cast<int>(MenuOptions::NumberOfOptions)) {
+			if(MenuOptions::isValid(selectedIndex)) {
 				valid = true;
 
 				if(selectedIndex == MenuOptions::LaunchGame) {
@@ -402,10 +402,10 @@ void Launcher::runGameTypePrompt(const QString & args) {
 			printf("Current game type is set to: \"%s\" (default: \"%s\")\n\n", GameTypes::toString(SettingsManager::getInstance()->gameType), GameTypes::toString(SettingsManager::getInstance()->defaultGameType));
 			printf("Choose a game type:\n");
 
-			for(int i=static_cast<int>(GameTypes::Invalid) + 1;i<static_cast<int>(GameTypes::NumberOfGameTypes);i++) {
-				printf("%d: %s\n", i, GameTypes::gameTypeStrings[i]);
+			for(int i=0;i<static_cast<int>(GameTypes::NumberOfGameTypes);i++) {
+				printf("%d: %s\n", i + 1, GameTypes::gameTypeStrings[i]);
 
-				cancel = i + 1;
+				cancel = i + 2;
 			}
 
 			printf("%d: Cancel\n", cancel);
@@ -451,8 +451,8 @@ void Launcher::runGameTypePrompt(const QString & args) {
 						if(value == cancel) {
 							break;
 						}
-						else if(GameTypes::isValid(value)) {
-							gameType = static_cast<GameTypes::GameType>(value);
+						else if(GameTypes::isValid(value - 1)) {
+							gameType = static_cast<GameTypes::GameType>(value - 1);
 						}
 					}
 				}
@@ -505,10 +505,10 @@ void Launcher::runModePrompt(const QString & args) {
 			printf("Current launch mode is set to: \"%s\" (default: \"%s\")\n\n", LauncherModes::toString(SettingsManager::getInstance()->launcherMode), LauncherModes::toString(SettingsManager::getInstance()->defaultLauncherMode));
 			printf("Choose a game launch mode:\n");
 
-			for(int i=static_cast<int>(LauncherModes::Invalid) + 1;i<static_cast<int>(LauncherModes::NumberOfModes);i++) {
-				printf("%d: %s\n", i, LauncherModes::modeStrings[i]);
+			for(int i=0;i<static_cast<int>(LauncherModes::NumberOfModes);i++) {
+				printf("%d: %s\n", i + 1, LauncherModes::modeStrings[i]);
 
-				cancel = i + 1;
+				cancel = i + 2;
 			}
 
 			printf("%d: Cancel\n", cancel);
@@ -554,8 +554,8 @@ void Launcher::runModePrompt(const QString & args) {
 						if(value == cancel) {
 							break;
 						}
-						else if(LauncherModes::isValid(value)) {
-							mode = static_cast<LauncherModes::LauncherMode>(value);
+						else if(LauncherModes::isValid(value - 1)) {
+							mode = static_cast<LauncherModes::LauncherMode>(value - 1);
 						}
 					}
 				}

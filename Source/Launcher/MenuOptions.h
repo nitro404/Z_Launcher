@@ -5,7 +5,7 @@
 
 namespace MenuOptions {
 	enum MenuOption {
-		Invalid,
+		Invalid = -1,
 		LaunchGame,
 		LaunchClient,
 		LaunchServer,
@@ -21,8 +21,8 @@ namespace MenuOptions {
 	extern const char * optionStrings[];
 	extern const MenuOption defaultOption;
 	
-	bool isValid(int option);
 	bool isValid(MenuOption option);
+	bool isValid(int option);
 	const char * toString(MenuOption option);
 	const char * toString(int option);
 	MenuOption parseFrom(const char * data);

@@ -5,7 +5,7 @@
 
 namespace LauncherModes {
 	enum LauncherMode {
-		Invalid,
+		Invalid = -1,
 		DOSBox,
 		Windows,
 		NumberOfModes
@@ -14,8 +14,8 @@ namespace LauncherModes {
 	extern const char * modeStrings[];
 	extern const LauncherMode defaultMode;
 	
-	bool isValid(int mode);
 	bool isValid(LauncherMode mode);
+	bool isValid(int mode);
 	const char * toString(LauncherMode mode);
 	const char * toString(int mode);
 	LauncherMode parseFrom(const char * data);
