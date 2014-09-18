@@ -43,9 +43,6 @@
     <ClInclude Include="Source\Variable System\Variable.h">
       <Filter>Variable System</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Variable System\VariableSystem.h">
-      <Filter>Variable System</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Utilities\Utilities.h">
       <Filter>Utilities</Filter>
     </ClInclude>
@@ -60,6 +57,9 @@
     </ClInclude>
     <ClInclude Include="Source\Launcher\MenuOptions.h">
       <Filter>Launcher</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Variable System\VariableCollection.h">
+      <Filter>Variable System</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -85,9 +85,6 @@
     <ClCompile Include="Source\Variable System\Variable.cpp">
       <Filter>Variable System</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Variable System\VariableSystem.cpp">
-      <Filter>Variable System</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Utilities\Utilities.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
@@ -102,6 +99,9 @@
     </ClCompile>
     <ClCompile Include="Source\Launcher\MenuOptions.cpp">
       <Filter>Launcher</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Variable System\VariableCollection.cpp">
+      <Filter>Variable System</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -26,7 +26,7 @@ const GameTypes::GameType SettingsManager::defaultGameType = GameTypes::defaultG
 const char * SettingsManager::defaultServerIPAddress = "127.0.0.1";
 
 SettingsManager::SettingsManager()
-	: m_variables(new VariableSystem())
+	: m_variables(new VariableCollection())
 	, dataDirectoryName(NULL)
 	, gameFileName(NULL)
 	, gamePath(NULL)
@@ -55,7 +55,7 @@ SettingsManager::SettingsManager()
 }
 
 SettingsManager::SettingsManager(const SettingsManager & s)
-	: m_variables(new VariableSystem(*s.m_variables))
+	: m_variables(new VariableCollection(*s.m_variables))
 	, dataDirectoryName(NULL)
 	, gameFileName(NULL)
 	, gamePath(NULL)
@@ -129,7 +129,7 @@ SettingsManager & SettingsManager::operator = (const SettingsManager & s) {
 
 	delete m_variables;
 
-	m_variables = new VariableSystem(*s.m_variables);
+	m_variables = new VariableCollection(*s.m_variables);
 
 	launcherMode = s.launcherMode;
 	gameType = s.gameType;
@@ -278,7 +278,7 @@ bool SettingsManager::loadFrom(const QString & fileName) {
 }
 
 bool SettingsManager::loadFrom(const char * fileName) {
-	VariableSystem * newVariables = VariableSystem::readFrom(fileName);
+	VariableCollection * newVariables = VariableCollection::readFrom(fileName);
 	if(newVariables == NULL) { return false; }
 
 	delete m_variables;

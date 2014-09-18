@@ -2,7 +2,7 @@
 #define SETTINGS_MANAGER_H
 
 #include "Utilities/Utilities.h"
-#include "Variable System/VariableSystem.h"
+#include "Variable System/VariableCollection.h"
 #include "Launcher/ArgumentParser.h"
 #include "Launcher/LauncherMode.h"
 #include "Launcher/GameType.h"
@@ -74,7 +74,7 @@ public:
 
 private:
 	static SettingsManager * instance;
-	VariableSystem * m_variables;
+	VariableCollection * m_variables;
 };
 
 #endif // SETTINGS_MANAGER_H
