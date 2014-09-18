@@ -26,7 +26,8 @@ const GameTypes::GameType SettingsManager::defaultGameType = GameTypes::defaultG
 const char * SettingsManager::defaultServerIPAddress = "127.0.0.1";
 
 SettingsManager::SettingsManager()
-	: dataDirectoryName(NULL)
+	: m_variables(new VariableSystem())
+	, dataDirectoryName(NULL)
 	, gameFileName(NULL)
 	, gamePath(NULL)
 	, setupSoundFileName(NULL)
@@ -50,12 +51,12 @@ SettingsManager::SettingsManager()
 	if(instance == NULL) {
 		instance = this;
 	}
-	m_variables = new VariableSystem();
 	reset();
 }
 
 SettingsManager::SettingsManager(const SettingsManager & s)
-	:dataDirectoryName(NULL)
+	: m_variables(new VariableSystem(*s.m_variables))
+	, dataDirectoryName(NULL)
 	, gameFileName(NULL)
 	, gamePath(NULL)
 	, setupSoundFileName(NULL)
@@ -79,8 +80,6 @@ SettingsManager::SettingsManager(const SettingsManager & s)
 	if(instance == NULL) {
 		instance = this;
 	}
-
-	m_variables = new VariableSystem(*s.m_variables);
 
 	dataDirectoryName = Utilities::copyString(s.dataDirectoryName);
 	gameFileName = Utilities::copyString(s.gameFileName);
