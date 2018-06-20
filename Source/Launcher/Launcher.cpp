@@ -832,7 +832,7 @@ bool Launcher::handleArguments(const ArgumentParser * args, bool start) {
 				}
 			}
 			else {
-				printf("Invalid game type, please specify one of the following: %s / %s / %s / %s\n", GameTypes::toString(GameTypes::Game), GameTypes::toString(GameTypes::SetupSound), GameTypes::toString(GameTypes::SetupVideo), GameTypes::toString(GameTypes::Client), GameTypes::toString(GameTypes::Server));
+				printf("Invalid game type, please specify one of the following: %s / %s / %s / %s / %s\n", GameTypes::toString(GameTypes::Game), GameTypes::toString(GameTypes::SetupSound), GameTypes::toString(GameTypes::SetupVideo), GameTypes::toString(GameTypes::Client), GameTypes::toString(GameTypes::Server));
 				return false;
 			}
 		}
