@@ -2,9 +2,11 @@ Z/*
 DOSBox/*
 Debug/*
 Release/*
+Build/*
 Version/*
 Misc/*
 Old/*
+.vs
 stderr.txt
 stdout.txt
 Z Launcher.txt
