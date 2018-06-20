@@ -1,5 +1,7 @@
 #include "Launcher/Launcher.h"
 
+const char * Launcher::VERSION = "1.0.1";
+
 Launcher::Launcher()
 	: m_initialized(false)
 	, m_arguments(NULL)
@@ -210,9 +212,9 @@ void Launcher::runMenu() {
 	while(true) {
 		Utilities::clear();
 
-		printf("======================\n");
-		printf(" Z Launcher Main Menu\n");
-		printf("======================\n");
+		printf("============================\n");
+		printf(" Z Launcher %s Main Menu\n", VERSION);
+		printf("============================\n");
 
 		printf("\n");
 
