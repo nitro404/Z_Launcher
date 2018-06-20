@@ -43,6 +43,7 @@ public:
 	void runGameTypePrompt(const QString & args = QString());
 	void runModePrompt(const QString & args = QString());
 	void runIPAddressPrompt(const QString & args = QString());
+	void runPortPrompt(const QString & args = QString());
 	bool runGame(const ArgumentParser * args = NULL);
 	bool updateScriptArgs();
 

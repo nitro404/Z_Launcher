@@ -14,6 +14,7 @@ namespace MenuOptions {
 		ChangeGameType,
 		ChangeLauncherMode,
 		ChangeHostIPAddress,
+		ChangePort,
 		Quit,
 		NumberOfOptions
 	};

@@ -200,6 +200,7 @@ void Launcher::runMenu() {
 	static const QRegExp soundSetupRegExp("^(a(udio)?|sound)$");
 	static const QRegExp videoSetupRegExp("^(v(ideo)?)$");
 	static const QRegExp         ipRegExp("^(ip|connect)([ ]+.*)?");
+	static const QRegExp       portRegExp("^(p(ort)?)([ ]+.*)?");
 	static const QRegExp   gameTypeRegExp("^(t(ype)?)([ ]+.*)?");
 	static const QRegExp       modeRegExp("^(m(ode)?)([ ]+.*)?");
 	static const QRegExp       helpRegExp("^(\\?|h(elp)?)$");
@@ -257,6 +258,10 @@ void Launcher::runMenu() {
 			runIPAddressPrompt(Utilities::getArguments(data));
 			continue;
 		}
+		else if(portRegExp.exactMatch(formattedData)) {
+			runPortPrompt(Utilities::getArguments(data));
+			continue;
+		}
 		else if(gameTypeRegExp.exactMatch(formattedData)) {
 			runGameTypePrompt(Utilities::getArguments(data));
 			continue;
@@ -285,6 +290,7 @@ void Launcher::runMenu() {
 			printf(" [v]ideo -------- Run video setup.\n");
 			printf(" connect <args> - Obtains the IP address of the host server.\n");
 			printf("      ip <args> - \"\"\n");
+			printf("  [p]ort <args> - Obtains the port of the local or remote server depending on specified launcher mode.\n");
 			printf("  [t]ype <args> - Change game type (Single / Multiplayer).\n");
 			printf("  [m]ode <args> - Change launcher mode (Regular / DOSBox).\n");
 			printf("  [b]ack -------- Returns to the previous menu (if applicable).\n");
@@ -354,6 +360,10 @@ void Launcher::runMenu() {
 				}
 				else if(selectedIndex == MenuOptions::ChangeHostIPAddress) {
 					runIPAddressPrompt();
+					continue;
+				}
+				else if (selectedIndex == MenuOptions::ChangePort) {
+					runPortPrompt();
 					continue;
 				}
 				else if(selectedIndex == MenuOptions::Quit) {
@@ -658,6 +668,102 @@ void Launcher::runIPAddressPrompt(const QString & args) {
 	}
 }
 
+void Launcher::runPortPrompt(const QString & args) {
+	if (!m_initialized) { return; }
+
+	bool valid = false;
+	QTextStream in(stdin);
+	QString input, data, formattedData;
+	QString trimmedArgs = args.trimmed();
+	bool skipInput = !trimmedArgs.isEmpty();
+
+	static const QRegExp cancelRegExp("^(a(bort)?)|(b(ack)?)|(c(ancel)?)$");
+	static const QRegExp   helpRegExp("^(\\?|h(elp)?)$");
+
+	while (true) {
+		Utilities::clear();
+
+		if (skipInput) {
+			data = trimmedArgs;
+			skipInput = false;
+		}
+		else {
+			printf("Enter %s server port:\n", m_gameType == GameTypes::Server ? "local" : "remote");
+			printf("> ");
+
+			input = in.readLine();
+			data = input.trimmed();
+			formattedData = data.toLower();
+
+			printf("\n");
+		}
+
+		if (cancelRegExp.exactMatch(data)) {
+			return;
+		}
+		else if (helpRegExp.exactMatch(data)) {
+			Utilities::clear();
+
+			printf(" [a]bort - returns to previous menu.\n");
+			printf("  [b]ack - returns to previous menu.\n");
+			printf("[c]ancel - returns to previous menu.\n");
+			printf("  [h]elp - displays this help message.\n");
+			printf("       ? - displays this help message.\n");
+			printf("\n");
+
+			Utilities::pause();
+
+			continue;
+		}
+
+		valid = true;
+
+		if (data.length() == 0) { valid = false; }
+
+		for (int i = 0; i<data.length(); i++) {
+			if (data[i] == ' ' || data[i] == '\t') {
+				valid = false;
+			}
+		}
+
+		QByteArray dataBytes = data.toLocal8Bit();
+		if (valid) {
+			int port = Utilities::parseInteger(dataBytes.data(), &valid);
+
+			if (port <= 0) {
+				valid = false;
+			}
+
+			if(valid) {
+				if (m_gameType == GameTypes::Server) {
+					SettingsManager::getInstance()->localServerPort = port;
+				}
+				else {
+					SettingsManager::getInstance()->remoteServerPort = port;
+				}
+			}
+
+			if(valid) {
+				printf("%s Server Port changed to: %s\n\n", m_gameType == GameTypes::Server ? "Local" : "Remote", dataBytes.data());
+
+				Utilities::pause();
+
+				break;
+			}
+			else {
+				printf("Invalid %s Server Port: %s\n\n", m_gameType == GameTypes::Server ? "Local" : "Remote", dataBytes.data());
+
+				Utilities::pause();
+			}
+		}
+		else {
+			printf("Invalid %s Server Port: %s\n\n", m_gameType == GameTypes::Server ? "Local" : "Remote", dataBytes.data());
+
+			Utilities::pause();
+		}
+	}
+}
+
 bool Launcher::runGame(const ArgumentParser * args) {
 	if(!m_initialized) { return false; }
 
@@ -775,7 +881,14 @@ bool Launcher::updateScriptArgs() {
 	m_scriptArgs.setArgument("ISOPATH", Utilities::generateFullPath(SettingsManager::getInstance()->CDISOPath, SettingsManager::getInstance()->CDISOFileName));
 	m_scriptArgs.setArgument("SETSOUND", SettingsManager::getInstance()->setupSoundFileName);
 	m_scriptArgs.setArgument("SETVIDEO", SettingsManager::getInstance()->setupVideoFileName);
-	m_scriptArgs.setArgument("IP", SettingsManager::getInstance()->serverIPAddress);
+
+	if(m_gameType == GameTypes::Client) {
+		m_scriptArgs.setArgument("IP", SettingsManager::getInstance()->serverIPAddress);
+		m_scriptArgs.setArgument("PORT", Utilities::toString(SettingsManager::getInstance()->remoteServerPort));
+	}
+	else if(m_gameType == GameTypes::Server) {
+		m_scriptArgs.setArgument("PORT", Utilities::toString(SettingsManager::getInstance()->localServerPort));
+	}
 
 	return true;
 }
@@ -827,6 +940,33 @@ bool Launcher::handleArguments(const ArgumentParser * args, bool start) {
 							printf("\nInvalid IP Address entered in arguments: %s\n\n", ipAddressBytes.data());
 
 							runIPAddressPrompt();
+						}
+					}
+				}
+
+				if(m_gameType == GameTypes::Client || m_gameType == GameTypes::Server) {
+					if(args->hasArgument("port")) {
+						QString portData = args->getValue("port").trimmed();
+						QByteArray portBytes = portData.toLocal8Bit();
+						bool valid = false;
+						int port = Utilities::parseInteger(portBytes.data(), &valid);
+
+						if(port <= 0) {
+							valid = false;
+						}
+
+						if(valid) {
+							if (m_gameType == GameTypes::Server) {
+								SettingsManager::getInstance()->localServerPort = port;
+							}
+							else {
+								SettingsManager::getInstance()->remoteServerPort = port;
+							}
+						}
+						else {
+							printf("\nInvalid %s Server Port entered in arguments: %s\n\n", m_gameType == GameTypes::Server ? "Local" : "Remote", portBytes.data());
+
+							runPortPrompt();
 						}
 					}
 				}
@@ -899,5 +1039,6 @@ void Launcher::displayArgumentHelp() {
 	printf(" -m DOSBox/Windows - Specifies launcher mode, default: DOSBox.\n");
 	printf(" -t Game/Setup Sound/Setup Video/Client/Server - Specifies game type, default: Game.\n");
 	printf(" -ip 127.0.0.1 - Specifies host IP address if running in client mode.\n");
+	printf(" -port 1337 - Specifies server port when running in client or server mode.\n");
 	printf(" -? - Displays this help message.\n");
 }

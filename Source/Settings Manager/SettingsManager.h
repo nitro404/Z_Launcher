@@ -49,6 +49,8 @@ public:
 	const static LauncherModes::LauncherMode defaultLauncherMode;
 	const static GameTypes::GameType defaultGameType;
 	const static char * defaultServerIPAddress;
+	const static int defaultLocalServerPort;
+	const static int defaultRemoteServerPort;
 	
 	char * dataDirectoryName;
 	char * gameFileName;
@@ -71,6 +73,8 @@ public:
 	LauncherModes::LauncherMode launcherMode;
 	GameTypes::GameType gameType;
 	char * serverIPAddress;
+	int localServerPort;
+	int remoteServerPort;
 
 private:
 	static SettingsManager * instance;

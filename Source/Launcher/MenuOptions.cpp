@@ -1,6 +1,6 @@
 #include "Launcher/MenuOptions.h"
 
-const char * MenuOptions::optionStrings[] = { "Launch Game", "Launch Client", "Launch Server", "Sound Setup", "Video Setup", "Change Game Type", "Change Launcher Mode", "Change Host IP Address", "Quit" };
+const char * MenuOptions::optionStrings[] = { "Launch Game", "Launch Client", "Launch Server", "Sound Setup", "Video Setup", "Change Game Type", "Change Launcher Mode", "Change Host IP Address", "Change Port", "Quit" };
 const MenuOptions::MenuOption MenuOptions::defaultOption = MenuOptions::LaunchGame;
 
 bool MenuOptions::isValid(MenuOption option) {
