@@ -1,11 +1,16 @@
-Z Launcher 1.0
+Z Launcher 1.0.1
 
 Release Date: September 16, 2014
 Development Time: 2 Days
-Developer: Kevin Scroggins (nitro glycerine)
-E-Mail: nitro404@gmail.com
+Developer: Kevin Scroggins
 Website: http://www.nitro404.com
-Requirements: Microsoft Windows, DOSBox (0.72), Z (Installation & ISO)
+
+==============
+ REQUIREMENTS
+==============
+ + Microsoft Windows
+ + DOSBox (Version 0.72 Recommended)
+ + Z (Installation & ISO)
 
 ==========
  FEATURES
@@ -23,14 +28,15 @@ Requirements: Microsoft Windows, DOSBox (0.72), Z (Installation & ISO)
 =============
   A simple, easy to use launcher for the Bitmap Brothers' classic 1995 MS-DOS
   strategy game, Z, complete with DOSBox integration.
-  
+
   Features a basic text-based interface, multiplayer support, proram arguments
   for quick launching through shortcuts or scripts, easy to edit file formats
   and customizable DOSBox scripts.
-  
-  If you happen to have any complaints, suggestions, bugs or comments, please
-  feel free to send them my way! If you wish to contact me using something
-  other than e-mail, alternative contact options are available on my website.
+
+  If you happen to have any complaints, suggestions, bugs, comments or
+  contributions, please feel free to submit an issue or pull request on the
+  GitHub page: https://github.com/nitro404/z_launcher
+
   Thank you!
 
 ============
@@ -45,7 +51,7 @@ Requirements: Microsoft Windows, DOSBox (0.72), Z (Installation & ISO)
   A copy of DOSBox will also be required, default is set to a subdirectory
   named "DOSBox" within the current working directory. Tested with DOSBox 0.72,
   though other versions should work as well.
-  
+
   If you wish to have the game and ISO located in a parent folder (or any other
   folder for that matter), you can customize the paths and such once the
   initial settings file (Z Launcher.ini) has been generated. Use . for working
@@ -59,6 +65,7 @@ Requirements: Microsoft Windows, DOSBox (0.72), Z (Installation & ISO)
   -m DOSBox/Windows - Specifies launcher mode, default: DOSBox.
   -t Game/Setup Sound/Setup Video/Client/Server - Specifies game type, default: Game.
   -ip 127.0.0.1 - Specifies host IP address if running in client mode.
+  -port 1337 - Specifies server port when running in client or server mode.
   -? - Displays a help message with argument information.
 
 ==================
@@ -76,6 +83,7 @@ Requirements: Microsoft Windows, DOSBox (0.72), Z (Installation & ISO)
  [v]ideo -------- Run video setup.
  connect <args> - Obtains the IP address of the host server.
       ip <args> - ""
+  [p]ort <args> - Obtains the port of the local or remote server depending on specified launcher mode.
   [t]ype <args> - Change game type (Single / Multiplayer).
   [m]ode <args> - Change launcher mode (Regular / DOSBox).
   [b]ack -------- Returns to the previous menu (if applicable).
@@ -92,31 +100,23 @@ NOTES:
              if no arguments are specified.
              ie. ip 127.0.0.1 or m DOSBox
 
-===========
- COMPILING
-===========
+==========
+ BUILDING
+==========
   If you wish to re-compile the program using the provided source code, you are
   welcome to do so as long as you don't take credit for my hard work and keep
   it for personal use.
 
-  The source files can be obtained from the public git repository at the
-  following link: https://github.com/nitro404/z_launcher
-  
-  The source code was written using C++ with Microsoft Visual Studio 2013, and
+  The source code was written using C++ with Microsoft Visual Studio 2017, and
   as such all Visual Studio project files are also provided. Other IDEs are not
   supported, but if you choose to try and make the project compile in a
-  different IDE, this is your choice and I assume no responsibility, nor will I
-  help you to get it set up in a different environment.
+  different IDE, this is your choice and I assume no responsibility.
 
   You will also need to have Qt 5 installed (the project was compiled with Qt
-  version 5.3.1), and you may need to update the project's include and library
-  directories. An additional library, Visual Leak Detector is also used in
-  debug mode, so you can remove the include in Main.cpp and the project's
-  include / library entries if you want, as it is not mandatory. You can
-  download these libraries at the following links:
+  version 5.11.1), and you may need to update the project's include and library
+  directories. You can download this library at the following link:
 
-  Qt: http://qt-project.org/downloads
-  Visual Leak Detector: https://vld.codeplex.com/
+  Qt: https://www.qt.io/download
 
 ==============
  SCRIPT FILES
@@ -148,5 +148,10 @@ NOTES:
 ===========
  CHANGELOG
 ===========
-  Version 1.0 (September 16, 2014)
+  Version 1.0.1 (June 20, 2018)
+    + Added support for specifying the server port.
+    + Updated to Qt to version 5.11.1
+    + Updated solution to use Visual Studio 2017
+
+  Version 1.0.0 (September 16, 2014)
     + Initial release!
