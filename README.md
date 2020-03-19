@@ -15,7 +15,7 @@
 + Platform-independent code design using Qt's Core library.
 
 ## **DESCRIPTION**
-A simple, easy to use launcher for the Bitmap Brothers' classic 1995 MS-DOS strategy game, Z, complete with DOSBox integration.
+A simple, easy to use launcher for the Bitmap Brothers' classic 1996 MS-DOS strategy game, Z, complete with DOSBox integration.
 
 Features a basic text-based interface, multiplayer support, proram arguments for quick launching through shortcuts or scripts, easy to edit file formats and customizable DOSBox scripts.
 

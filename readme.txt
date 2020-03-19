@@ -26,7 +26,7 @@ Website: http://www.nitro404.com
 =============
  DESCRIPTION
 =============
-  A simple, easy to use launcher for the Bitmap Brothers' classic 1995 MS-DOS
+  A simple, easy to use launcher for the Bitmap Brothers' classic 1996 MS-DOS
   strategy game, Z, complete with DOSBox integration.
 
   Features a basic text-based interface, multiplayer support, proram arguments
